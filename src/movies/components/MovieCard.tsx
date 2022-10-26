@@ -15,28 +15,25 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
 
     return (
         <div data-testid={`movie-item-${movie.id}`}>
-            {/* TODO: Display image */}
-            <img className="card-img-top" alt="" />
+            <img src={movie.imageUrl} className="card-img-top" alt="" />
             <div className="card-body">
                 <h4 className="card-title">
-                    {/* TODO: Display title */}
+                    {movie.title}
                 </h4>
-                {/* TODO: Display subtitle */}
-                <h6 className="card-subtitle mb-2 text-muted"></h6>
+                <h6 className="card-subtitle mb-2 text-muted">{movie.subtitle}</h6>
                 <p className="text-justify" style={{ fontSize: '14px' }}>
-                    {/* TODO: Display description */}
+                    {movie.description}
                 </p>
                 {/* TODO: Implement delete functionality */}
-                <Button>Delete</Button>
+                <Button onClick={() =>  moviesDispatch}>Delete</Button>
             </div>
             <div className="card-footer">
                 <div className="clearfix">
                 <div className="float-left mt-1">
-                    {/* TODO: Display stars */}
-    
+                    <StarRating rating={getAvgRating(movie)} onRate={() => {}}/> 
                 </div>
                 {/* TODO: Display rating value */}
-                <div data-testid="movie-rating" className="card-footer-badge float-right badge badge-primary badge-pill"></div>
+                <div data-testid="movie-rating" className="card-footer-badge float-right badge badge-primary badge-pill">{getAvgRating(movie)}</div>
                 </div>
             </div>
         </div>    

@@ -23,7 +23,7 @@ export const MovieList = () => {
         </Card>      
       ))}
       <Card>
-        {/* TODO: Implement displaying appropriate card for add movie - button or form */}
+        {displayOptionType === 'button' ? <AddMovieButton onClick={() => setDisplayOptionType('form')}/> : <AddMovieForm onSubmit={() => {}} onCancel={() => setDisplayOptionType('button')}/> }
         {/* TODO: use AddMovieButton and AddMovieForm */}
       </Card>
     </div>
