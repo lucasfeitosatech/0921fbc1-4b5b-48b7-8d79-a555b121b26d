@@ -4,6 +4,8 @@ import { getAvgRating } from 'movies/ratings';
 import { Movie } from 'types';
 import { useMovies } from './MovieProvider';
 
+
+
 interface MovieCardProps {
     movie: Movie,
 }
@@ -25,7 +27,14 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
                     {movie.description}
                 </p>
                 {/* TODO: Implement delete functionality */}
-                <Button onClick={() =>  moviesDispatch}>Delete</Button>
+                <Button onClick={() => {
+                    moviesDispatch({
+                        type: 'delete',
+                        payload: {
+                            movieId:movie.id
+                        }
+                    })
+                }}>Delete</Button>
             </div>
             <div className="card-footer">
                 <div className="clearfix">

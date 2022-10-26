@@ -23,7 +23,16 @@ export const MovieList = () => {
         </Card>      
       ))}
       <Card>
-        {displayOptionType === 'button' ? <AddMovieButton onClick={() => setDisplayOptionType('form')}/> : <AddMovieForm onSubmit={() => {}} onCancel={() => setDisplayOptionType('button')}/> }
+        {displayOptionType === 'button' ? <AddMovieButton onClick={() => setDisplayOptionType('form')}/> : <AddMovieForm onSubmit={(movie) => {
+          console.log('add');
+          moviesDispatch({
+            type: 'add',
+            payload: {
+                movie
+            }
+        })
+        setDisplayOptionType('button')
+        }} onCancel={() => setDisplayOptionType('button')}/> }
         {/* TODO: use AddMovieButton and AddMovieForm */}
       </Card>
     </div>
