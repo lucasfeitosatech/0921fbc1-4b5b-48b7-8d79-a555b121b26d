@@ -39,7 +39,15 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
             <div className="card-footer">
                 <div className="clearfix">
                 <div className="float-left mt-1">
-                    <StarRating rating={getAvgRating(movie)} onRate={() => {}}/> 
+                    <StarRating rating={getAvgRating(movie)} onRate={(rating) => {
+                        moviesDispatch({
+                            type: 'rate',
+                            payload: {
+                                movieId: movie.id,
+                                rating
+                            }
+                        })
+                    }}/> 
                 </div>
                 {/* TODO: Display rating value */}
                 <div data-testid="movie-rating" className="card-footer-badge float-right badge badge-primary badge-pill">{getAvgRating(movie)}</div>

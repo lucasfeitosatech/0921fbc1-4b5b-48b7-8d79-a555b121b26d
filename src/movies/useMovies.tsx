@@ -33,14 +33,28 @@ export function useMoviesCollection(): [
         return { movies: [...movies,m], initialized: true };
 
       case "delete":
-        const id = action.payload.movieId;
-        for(let i in state.movies ){
-          
+        const mId = action.payload.movieId;
+        let indexToRemove = -1;
+        for(let i = 0 ; i<state.movies.length;i++ ){
+          const movie = state.movies[i];
+          if(movie.id === mId){
+            indexToRemove = i;
+          }
         }
-        return { ...state };
+        if(indexToRemove !== -1)
+          state.movies.splice(indexToRemove,1);
+        return { movies:[...state.movies],initialized:true};
 
       case "rate":
-        return { ...state };
+        const rating = action.payload.rating;
+        const movieId = action.payload.movieId;
+        for(let i = 0 ; i<state.movies.length;i++ ){
+          const movie = state.movies[i];
+          if(movie.id === movieId){
+            movie.ratings.push(rating);
+          }
+        }
+        return { movies:[...state.movies],initialized:true};
 
       default:
         return state;
